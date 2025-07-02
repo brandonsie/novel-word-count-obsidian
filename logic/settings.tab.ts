@@ -39,6 +39,7 @@ export class NovelWordCountSettingTab extends PluginSettingTab {
 		this.renderAdvancedSettings(containerEl);
 		this.renderReanalyzeButton(containerEl);
 		this.renderDonationButton(containerEl);
+
 	}
 
 	//

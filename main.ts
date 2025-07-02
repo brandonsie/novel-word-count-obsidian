@@ -13,6 +13,7 @@ import { NovelWordCountSettingTab } from "logic/settings.tab";
 import {
 	App,
 	Plugin,
+	MarkdownView,
 	PluginManifest,
 	WorkspaceLeaf,
 	TAbstractFile,
@@ -25,6 +26,8 @@ interface FileItem {
 }
 
 export default class NovelWordCountPlugin extends Plugin {
+	public statusBarItemEl: HTMLElement;
+	
 	savedData: NovelWordCountSavedData;
 	get settings(): NovelWordCountSettings {
 		return this.savedData.settings;
@@ -278,5 +281,12 @@ export default class NovelWordCountPlugin extends Plugin {
 			? this.settings.alignment
 			: this.settings.folderAlignment;
 		container.toggleClass(folderPrefix + folderAlignment, true);
+	}
+
+
+	private escapeRegExp(string: string): string {
+		return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		
+	
 	}
 }

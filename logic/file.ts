@@ -27,6 +27,7 @@ export interface CountData {
 	characterCount: number;
 	nonWhitespaceCharacterCount: number;
 	newlineCount: number;
+	taskCount: number;
 	readingTimeInMinutes: number;
 	linkCount: number;
 	embedCount: number;
@@ -45,6 +46,7 @@ export interface SessionCountData {
 	characterCount: number;
 	nonWhitespaceCharacterCount: number;
 	newlineCount: number;
+	taskCount: number;
 }
 
 export enum TargetNode {
@@ -148,6 +150,7 @@ export class FileHelper {
 			characterCount: 0,
 			nonWhitespaceCharacterCount: 0,
 			newlineCount: 0,
+			taskCount: 0,
 			readingTimeInMinutes: 0,
 			linkCount: 0,
 			embedCount: 0,
@@ -162,6 +165,7 @@ export class FileHelper {
 				characterCount: 0,
 				nonWhitespaceCharacterCount: 0,
 				newlineCount: 0,
+				taskCount: 0,
 			},
 		};
 
@@ -184,6 +188,7 @@ export class FileHelper {
 					total.nonWhitespaceCharacterCount +
 					childCount.nonWhitespaceCharacterCount,
 				newlineCount: total.newlineCount + childCount.newlineCount,
+				taskCount: total.taskCount + childCount.taskCount,
 				readingTimeInMinutes:
 					total.readingTimeInMinutes + childCount.readingTimeInMinutes,
 				createdDate:
@@ -207,6 +212,8 @@ export class FileHelper {
 						childCount.sessionStart.nonWhitespaceCharacterCount,
 					newlineCount:
 						total.sessionStart.newlineCount + childCount.sessionStart.newlineCount,
+					taskCount:
+						total.sessionStart.taskCount + childCount.sessionStart.taskCount,
 				},
 			};
 		}, directoryDefault);
@@ -282,6 +289,7 @@ export class FileHelper {
 			characterCount: 0,
 			nonWhitespaceCharacterCount: 0,
 			newlineCount: 0,
+			taskCount: 0,
 			readingTimeInMinutes: 0,
 			linkCount: 0,
 			embedCount: 0,
@@ -296,6 +304,7 @@ export class FileHelper {
 				characterCount: 0,
 				nonWhitespaceCharacterCount: 0,
 				newlineCount: 0,
+				taskCount: 0,
 			} : existingSession,
 		};
 
@@ -362,6 +371,7 @@ export class FileHelper {
 			characterCount: countResult.charCount,
 			nonWhitespaceCharacterCount: countResult.nonWhitespaceCharCount,
 			newlineCount: countResult.newlineCount,
+			taskCount: countResult.taskCount,
 			readingTimeInMinutes,
 			linkCount: this.countLinks(metadata),
 			embedCount: this.countEmbeds(metadata),
@@ -375,7 +385,8 @@ export class FileHelper {
 					wordCount: combinedWordCount,
 					characterCount: countResult.charCount,
 					nonWhitespaceCharacterCount: countResult.nonWhitespaceCharCount,
-					newlineCount: countResult.newlineCount
+					newlineCount: countResult.newlineCount,
+					taskCount: countResult.taskCount,
 				} : {}),
 			}
 		} as CountData);

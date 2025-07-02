@@ -4,6 +4,8 @@
 
 This plugin displays statistics of your choice next to every file, folder, and vault in the File Explorer pane. It updates in real time as you write.
 
+The original plug in is at https://github.com/isaaclyman/novel-word-count-obsidian. This fork adds counting of incomplete tasks, i.e. "- [ ]".
+
 ### Settings
 
 **Data to show.** You can choose up to three data types to display side by side. Choose from the following:
@@ -25,6 +27,8 @@ This plugin displays statistics of your choice next to every file, folder, and v
 | **Last updated date** | The date the note was last updated. | On a folder, this shows the latest edit date of all notes in the folder. |
 | **File size** | Total size on your hard drive. | |
 | **Frontmatter key** | Any specified key in a note's [Properties](https://help.obsidian.md/Editing+and+formatting/Properties). | No automatic prefix, suffix, abbreviation, or formatting exists for this data type. You can format your frontmatter however you like, or [consider using a plugin](https://obsidian.md/plugins?search=frontmatter) to generate it. |
+| **Incomplete Tasks** | Number of incomplete tasks. | |
+
 
 **Abbreviate descriptions.** Enable to show shortened counts:
 
@@ -45,6 +49,8 @@ This plugin displays statistics of your choice next to every file, folder, and v
 | Created 1/22/2022 | 1/22/2022/c |
 | Updated 1/22/2022 | 1/22/2022/u |
 | 13.39 KB | 13.39kb |
+| 13.39 KB | 13.39kb |
+| 59 tasks | 59t |
 
 *NOTE:* You can set your own suffixes (or hide suffixes entirely) for most count types by enabling the "Use advanced formatting" toggle.
 

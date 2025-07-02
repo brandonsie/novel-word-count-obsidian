@@ -16,6 +16,7 @@ export enum $CountType {
 	FileSize = "filesize",
 	FrontmatterKey = "frontmatterKey",
 	TrackSession = "tracksession",
+	Tasks = "tasks",
 }
 
 export const COUNT_TYPES: $CountType[] = Object.values($CountType);
@@ -28,6 +29,7 @@ export type $SessionCountType = Extract<
 	| $CountType.Linebreak
 	| $CountType.Note
 	| $CountType.Character
+	| $CountType.Tasks
 >;
 
 export const SESSION_COUNT_TYPES: $SessionCountType[] = [
@@ -37,6 +39,7 @@ export const SESSION_COUNT_TYPES: $SessionCountType[] = [
 	$CountType.Linebreak,
 	$CountType.Note,
 	$CountType.Character,
+	$CountType.Tasks
 ];
 
 export type CountTypeConfiguration = Partial<{
@@ -63,6 +66,7 @@ export const COUNT_TYPE_DISPLAY_STRINGS: { [countType: string]: string } = {
 	[$CountType.FileSize]: "File Size",
 	[$CountType.FrontmatterKey]: "Frontmatter Key",
 	[$CountType.TrackSession]: "Track Session",
+	[$CountType.Tasks]: "Incomplete Tasks",
 };
 
 export const COUNT_TYPE_DESCRIPTIONS: { [countType: string]: string } = {
@@ -89,6 +93,7 @@ export const COUNT_TYPE_DESCRIPTIONS: { [countType: string]: string } = {
 	[$CountType.FrontmatterKey]: "Key in the frontmatter block.",
 	[$CountType.TrackSession]:
 		"Track progress since last Obsidian startup, plugin init, settings change, or recount",
+	[$CountType.Tasks]: "Number of incomplete tasks.",
 };
 
 export const UNFORMATTABLE_COUNT_TYPES = [
@@ -114,6 +119,7 @@ export const COUNT_TYPE_DEFAULT_SHORT_SUFFIXES: {
 	[$CountType.Modified]: "/u",
 	[$CountType.FrontmatterKey]: "",
 	[$CountType.TrackSession]: "/s",
+	[$CountType.Tasks]: "t",
 };
 
 export function getDescription(countType: $CountType): string {

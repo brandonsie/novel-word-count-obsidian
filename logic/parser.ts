@@ -11,6 +11,7 @@ export interface MarkdownParseResult {
 	spaceDelimitedWordCount: number;
 	cjkWordCount: number;
 	newlineCount: number;
+	taskCount: number;
 }
 
 const cjkRegex =
@@ -22,6 +23,7 @@ export function countMarkdown(
 	config: MarkdownParseConfig
 ): MarkdownParseResult {
 	content = removeNonCountedContent(content, config);
+
 
 	let wordSequences = content
 		.replace(cjkRegex, " ")
@@ -40,13 +42,22 @@ export function countMarkdown(
 		lineSequences = [];
 	}
 
+	// Count occurrences of "- [ ]". allowing leading whitespace
+	const taskCount = (content.match(/^\s*- \[ \]/gm) || []).length;
+
+	// console.log("Content:", content);
+	
 	const result: MarkdownParseResult = {
 		charCount: content.length,
 		nonWhitespaceCharCount: countNonWhitespaceCharacters(content),
 		spaceDelimitedWordCount: wordSequences.length,
 		cjkWordCount: (content.match(cjkRegex) || []).length,
 		newlineCount: lineSequences.length,
+		taskCount: taskCount, 
 	};
+
+	// console.log("Tasks:", taskCount);
+
 
 	return result;
 }

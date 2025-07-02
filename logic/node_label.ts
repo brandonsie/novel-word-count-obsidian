@@ -208,6 +208,14 @@ export class NodeLabelHelper {
 					abbreviateDescriptions,
 					customSuffix: config.customSuffix,
 				});
+				case $CountType.Tasks:
+					return this.getBasicCountString({
+						count: NumberFormatDefault.format(counts.taskCount),
+						noun: "task",
+						abbreviatedNoun: COUNT_TYPE_DEFAULT_SHORT_SUFFIXES[$CountType.Tasks],
+						abbreviateDescriptions,
+						customSuffix: config.customSuffix,
+					});
 			case $CountType.PercentGoal: {
 				if (counts.wordGoal <= 0) {
 					return null;
@@ -346,6 +354,7 @@ export class NodeLabelHelper {
 
 				return abbreviateDescriptions ? `${quantity}/s` : `Session: ${quantity}`;
 			}
+
 		}
 
 		return null;
@@ -361,6 +370,8 @@ export class NodeLabelHelper {
 				return NumberFormatDecimal.format(counts.pageCount - counts.sessionStart.pageCount);
 			case $CountType.Linebreak:
 				return NumberFormatDefault.format(counts.newlineCount - counts.sessionStart.newlineCount);
+			case $CountType.Tasks:
+				return NumberFormatDefault.format(counts.taskCount - counts.sessionStart.taskCount);	
 			case $CountType.Note:
 				return NumberFormatDefault.format(counts.noteCount - counts.sessionStart.noteCount);
 			case $CountType.Character: {

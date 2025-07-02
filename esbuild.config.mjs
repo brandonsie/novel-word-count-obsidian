@@ -11,7 +11,9 @@ if you want to view the source, please visit the github repository of this plugi
 
 const prod = (process.argv[2] === "production");
 
-const context = await esbuild.context({
+// const context = await esbuild.context({
+(async () => {
+	const context = await esbuild.context({
 	banner: {
 		js: banner,
 	},
@@ -39,10 +41,19 @@ const context = await esbuild.context({
 	treeShaking: true,
 	outfile: "main.js",
 });
+await context.watch(); // added these next two lines with async
+})();
 
 if (prod) {
-	await context.rebuild();
+	// await context.rebuild();
+	(async () => {
+		const context = await context.rebuild()
+	});
+	
 	process.exit(0);
 } else {
-	await context.watch();
+	// await context.watch();
+	(async () => {
+		const context = await context.watch()
+	});
 }
